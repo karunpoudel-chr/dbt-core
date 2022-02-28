@@ -428,6 +428,8 @@ class StateSelectorMethod(SelectorMethod):
             macro_node = self.manifest.macros[macro_uid]
             if len(macro_node.depends_on.macros) > 0:
                 return self.recursively_check_macros_modified(macro_node, previous_macros)
+            elif len(node.depends_on.macros) > len(previous_macros):
+                continue
             else:
                 return False
 
