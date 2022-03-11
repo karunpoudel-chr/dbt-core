@@ -1084,6 +1084,27 @@ def parse_args(args, cls=DBTArgumentParser):
         '''
     )
 
+    schema_cache_flag = p.add_mutually_exclusive_group()
+    schema_cache_flag.add_argument(
+        '--selected-schema-cache',
+        action='store_const',
+        const=True,
+        default=None,
+        dest='selected_schema_cache',
+        help='''
+        Pre cache objects of schema relevent to selected resource only.
+        '''
+    )
+    schema_cache_flag.add_argument(
+        '--no-selected-schema-cache',
+        action='store_const',
+        const=False,
+        dest='selected_schema_cache',
+        help='''
+        Pre cache objects of all schema.
+        '''
+    )
+
     subs = p.add_subparsers(title="Available sub-commands")
 
     base_subparser = _build_base_subparser()
